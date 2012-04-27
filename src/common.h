@@ -8,6 +8,9 @@
 #define SORT_REVERSE
 #undef SORT_REVERSE
 
+#define USE_SRAND
+#define SAMPLE_OUTPUT
+
 typedef int int32;
 typedef unsigned int uint32;
 typedef long long int int64;

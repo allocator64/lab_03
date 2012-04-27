@@ -7,7 +7,7 @@ CFLAGS=-Wall -Werror -O2 -m32
 LDFLAGS=-m32
 LDLIBS=-lm
 NASM=nasm
-NFLAGS="-f elf32"
+NFLAGS=-f elf32 -Ox
 
 TARGET=$(BINDIR)/$(shell basename `pwd`)
 C_SOURCES=$(wildcard $(SRCDIR)/*.c)

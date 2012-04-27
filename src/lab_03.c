@@ -126,6 +126,38 @@ void test( const char * sort_name,callback sort_function,int test_count,... )
 
 int main( int argc, char **argv, char **envp )
 {
+#ifdef SAMPLE_OUTPUT
+        int64 * a;
+        int i;
+#endif
+#ifdef USE_SRAND
+	srand(time(0));
+#endif
+#ifdef SAMPLE_OUTPUT
+	a = ( int64 * )calloc( 10, sizeof(int64) );
+        array_fill_random(10,a);
+        for( i = 0; i < 10; ++i )
+        {
+            a[i] %= 100;
+#ifdef WIN32
+            printf("%I64d ",a[i]);
+#else
+            printf("%lld ",a[i]);
+#endif
+        }
+        printf("\n");
+        heap_sort(10,a);
+        for( i = 0; i < 10; ++i )
+        {
+            a[i] %= 100;
+#ifdef WIN32
+            printf("%I64d ",a[i]);
+#else
+            printf("%lld ",a[i]);
+#endif
+        }
+        printf("\n");
+#endif
 	test("Bubble sort",bubble_sort,5,10,20,50,100,10000);
 	printf("\n");
 	test("Heap sort",heap_sort,5,10,20,50,100,10000);
