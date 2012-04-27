@@ -3,7 +3,7 @@ OBJDIR=obj
 SRCDIR=src
 
 CC=gcc
-CFLAGS=-Wall -m32
+CFLAGS=-Wall -Werror -O2 -m32
 LDFLAGS=-m32
 LDLIBS=-lm
 NASM=nasm

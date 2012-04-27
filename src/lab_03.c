@@ -34,8 +34,6 @@ void test_sort( int n, callback func, test_res test[TEST_COUNT] )
 	int64 * a = ( int64 * )calloc( n, sizeof(int64) );
 	uint64 tb;
 	uint64 te;
-	int i;
-
 
 	/// direct sorted array
 	array_fill_sorted(n,a);
