@@ -10,8 +10,9 @@ NASM=nasm
 NFLAGS="-f elf32"
 
 TARGET=$(BINDIR)/$(shell basename `pwd`)
-SOURCES=$(wildcard $(SRCDIR)/*.c)
-OBJECTS=$(SOURCES:$(SRCDIR)%.c=$(OBJDIR)%.o)
+C_SOURCES=$(wildcard $(SRCDIR)/*.c)
+ASM_SOURCES=$(wildcard $(SRCDIR)/*.asm)
+OBJECTS=$(C_SOURCES:$(SRCDIR)%.c=$(OBJDIR)%.o) $(ASM_SOURCES:$(SRCDIR)%.asm=$(OBJDIR)%.o)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	$(CC) -c $(CFLAGS) -o $@ $<

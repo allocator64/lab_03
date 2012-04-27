@@ -1,11 +1,3 @@
-global _timestamp
-global _cmp
-global _rcmp
-global _swap
-global _cmp_cnt
-global _swp_cnt
-
-; linux fix
 global timestamp
 global cmp
 global rcmp
@@ -14,19 +6,17 @@ global cmp_cnt
 global swp_cnt
 
 section .data
-	_cmp_cnt dd 0
-	_swp_cnt dd 0
+	cmp_cnt dd 0
+	swp_cnt dd 0
 
 section .text
 
 ;UINT_64 timestamp( void )
-_timestamp:
 timestamp:
 	rdtsc
 	ret
 
 ;BOOL cmp( int64 a, int64 b );
-_cmp:
 cmp:
 	push ebp
 	mov ebp,esp
@@ -50,12 +40,11 @@ cmp:
 
 	cmp_loc1:
 
-	inc DWORD[_cmp_cnt]
+	inc DWORD[cmp_cnt]
 	pop ebp
 	ret
 
 ;BOOL rcmp( int64 a, int64 b );
-_rcmp:
 rcmp:
 	push ebp
 	mov ebp,esp
@@ -79,12 +68,11 @@ rcmp:
 
 	rcmp_loc1:
 
-	inc DWORD[_cmp_cnt]
+	inc DWORD[cmp_cnt]
 	pop ebp
 	ret
 
 ;void swap( int64 * a, int64 * b );
-_swap:
 swap:
 	push ebp
 	mov ebp,esp
@@ -110,6 +98,6 @@ swap:
 	pop edi
 	pop esi
 
-	inc DWORD[_swp_cnt]
+	inc DWORD[swp_cnt]
 	pop ebp
 	ret
