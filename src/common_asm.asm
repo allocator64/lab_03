@@ -11,7 +11,7 @@ section .data
 
 section .text
 
-;UINT_64 timestamp( void )
+;uint64 timestamp( void )
 timestamp:
 	rdtsc
 	ret
