@@ -14,7 +14,7 @@ C_SOURCES=$(wildcard $(SRCDIR)/*.c)
 ASM_SOURCES=$(wildcard $(SRCDIR)/*.asm)
 OBJECTS=$(C_SOURCES:$(SRCDIR)%.c=$(OBJDIR)%.o) $(ASM_SOURCES:$(SRCDIR)%.asm=$(OBJDIR)%.o)
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c
+$(OBJDIR)/%.o: $(SRCDIR)/%.c $(SRCDIR)/%.h $(SRCDIR)/common.h
 	$(MKDIR)
 	$(CC) -c $(CFLAGS) -o $@ $<
 
@@ -29,6 +29,8 @@ $(OBJECTS): $(SOURCES)
 $(TARGET): $(OBJECTS)
 	$(CC) -o $(TARGET) $(LDFLAGS) $(OBJECTS) $(LDLIBS)
 
+reverse: $(TARGET)
+	$(CFLAGS)=$(CFLAGS) -DSORT_REVERSE
 
 clean:
 	$(RM) $(TARGET) $(OBJECTS)
