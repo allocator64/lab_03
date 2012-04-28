@@ -2,7 +2,7 @@ OBJDIR=obj
 SRCDIR=src
 
 CC=gcc
-CFLAGS=-Wall -Werror -pedantic -std=c99 -march=native -O2 -finline-functions -frename-registers -funswitch-loops -m32
+CFLAGS=-Wall -Werror -pedantic -std=c99 -march=native -O2 -finline-functions -frename-registers -m32
 LDFLAGS=-m32
 LDLIBS=-lm
 NASM=nasm
@@ -27,8 +27,6 @@ all: $(TARGET)
 
 reverse: $(TARGET)
         $(CFLAGS)=$(CFLAGS) -DSORT_REVERSE
-
-$(OBJECTS): $(SOURCES)
 
 $(TARGET): $(OBJECTS)
 	$(CC) -o $(TARGET) $(LDFLAGS) $(OBJECTS) $(LDLIBS)
