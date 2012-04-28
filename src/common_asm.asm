@@ -18,6 +18,7 @@ timestamp:
 
 ;BOOL cmp( int64 a, int64 b );
 cmp:
+_cmp:
 	push ebp
 	mov ebp,esp
 
