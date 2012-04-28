@@ -8,6 +8,7 @@ LDLIBS=-lm
 NASM=nasm
 NFLAGS=-f elf32 -Ox
 MKDIR=@mkdir -p $(@D)
+STRIP=strip
 
 TARGET=$(shell basename `pwd`)
 C_SOURCES=$(wildcard $(SRCDIR)/*.c)
@@ -24,6 +25,7 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.asm
 	$(NASM) $(NFLAGS) -o $@ $<
 
 all: $(TARGET)
+	$(STRIP) $(TARGET)
 
 reverse: $(TARGET)
         $(CFLAGS)=$(CFLAGS) -DSORT_REVERSE
