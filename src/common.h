@@ -5,9 +5,6 @@
 #include <stdarg.h>
 #include <time.h>
 
-#define SORT_REVERSE
-#undef SORT_REVERSE
-
 #define USE_SRAND
 #define SAMPLE_OUTPUT
 

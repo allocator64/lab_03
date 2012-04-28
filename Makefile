@@ -2,7 +2,7 @@ OBJDIR=obj
 SRCDIR=src
 
 CC=gcc
-CFLAGS=-Wall -Werror -O2 -m32
+CFLAGS=-Wall -Werror -pedantic -std=c99 -march=native -O2 -finline-functions -frename-registers -funswitch-loops -m32
 LDFLAGS=-m32
 LDLIBS=-lm
 NASM=nasm
@@ -12,6 +12,7 @@ MKDIR=@mkdir -p $(@D)
 TARGET=$(shell basename `pwd`)
 C_SOURCES=$(wildcard $(SRCDIR)/*.c)
 ASM_SOURCES=$(wildcard $(SRCDIR)/*.asm)
+SOURCES=$(C_SOURCES) $(ASM_SOURCES)
 OBJECTS=$(C_SOURCES:$(SRCDIR)%.c=$(OBJDIR)%.o) $(ASM_SOURCES:$(SRCDIR)%.asm=$(OBJDIR)%.o)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c $(SRCDIR)/%.h $(SRCDIR)/common.h
@@ -24,13 +25,13 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.asm
 
 all: $(TARGET)
 
+reverse: $(TARGET)
+        $(CFLAGS)=$(CFLAGS) -DSORT_REVERSE
+
 $(OBJECTS): $(SOURCES)
 
 $(TARGET): $(OBJECTS)
 	$(CC) -o $(TARGET) $(LDFLAGS) $(OBJECTS) $(LDLIBS)
-
-reverse: $(TARGET)
-	$(CFLAGS)=$(CFLAGS) -DSORT_REVERSE
 
 clean:
 	$(RM) $(TARGET) $(OBJECTS)
