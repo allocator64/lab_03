@@ -158,9 +158,9 @@ int main( int argc, char **argv, char **envp )
         }
         printf("\n");
 #endif
-	test("Bubble sort",bubble_sort,5,10,20,50,100,10000);
+	test("Bubble sort",bubble_sort,6,10,20,50,100,1000,10000);
 	printf("\n");
-	test("Heap sort",heap_sort,5,10,20,50,100,10000);
+	test("Heap sort",heap_sort,6,10,20,50,100,1000,10000);
 
 	return 0;
 }

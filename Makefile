@@ -3,6 +3,7 @@ SRCDIR=src
 
 CC=gcc
 CFLAGS=-Wall -Werror -pedantic -std=c99 -march=native -O2 -finline-functions -frename-registers -m32
+reverse: CFLAGS+= -DSORT_REVERSE
 LDFLAGS=-m32
 LDLIBS=-lm
 NASM=nasm
@@ -28,7 +29,7 @@ all: $(TARGET)
 	$(STRIP) $(TARGET)
 
 reverse: $(TARGET)
-        $(CFLAGS)=$(CFLAGS) -DSORT_REVERSE
+	$(STRIP) $(TARGET)
 
 $(TARGET): $(OBJECTS)
 	$(CC) -o $(TARGET) $(LDFLAGS) $(OBJECTS) $(LDLIBS)
