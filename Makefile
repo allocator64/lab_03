@@ -25,11 +25,10 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.asm
 	$(MKDIR)
 	$(NASM) $(NFLAGS) -o $@ $<
 
-all: $(TARGET)
+all: clean $(TARGET)
 	$(STRIP) $(TARGET)
 
-reverse: $(TARGET)
-	$(STRIP) $(TARGET)
+reverse : clean all
 
 $(TARGET): $(OBJECTS)
 	$(CC) -o $(TARGET) $(LDFLAGS) $(OBJECTS) $(LDLIBS)
